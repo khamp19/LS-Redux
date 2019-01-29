@@ -11,11 +11,8 @@ class MakeTodo extends Component {
     this.state = {
       newTodo: '',
       todo: '',
-      todos: []
+      todos: ["make bed", "take out trash"]
     };
-    this.addTodo = this.addTodo.bind(this);
-    this.updateNewTodo = this.updateNewTodo.bind(this);
-    this.toggleComplete = this.toggleComplete.bind(this);
   };
 
   addTodo = (event) => {
@@ -23,7 +20,7 @@ class MakeTodo extends Component {
     const todos = this.state.todos;
     todos.push(this.state.newTodo);
     this.setState({
-      todo: '',
+      newTodo: '',
     });
     console.log(todos);
   }
@@ -49,7 +46,7 @@ class MakeTodo extends Component {
         <ul>
           {this.state.todos.map((todo, id) => {
             return (
-              <li key={id} type="checkbox" onChange={this.toggleComplete}>
+              <li key={id} onClick={this.toggleComplete}>
                 {todo} {this.state.todo.value}
               </li>
             );
