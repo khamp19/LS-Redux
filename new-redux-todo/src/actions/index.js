@@ -1,30 +1,25 @@
 //actions 
-const GET_TODOS = 'GET_TODOS';
-const ADD_TODO = 'ADD_TODO';
-const SET_COMPLETE = 'SET_COMPLETE';
+export const ADD_TODO = 'ADD_TODO';
+export const TOGGLE_COMPLETE = 'TOGGLE_COMPLETE';
 
-//get todos
-const getTodos = () => {
-    return {
-        type: GET_TODOS,
-        payload: todos
-    }
-}
-export { getTodos };
 
 //create new todo
-const addTodo = () => {
+//takes in 'newTodo from state on todoList component 
+export const addTodo = (newTodo) => {
+    const newItem = {
+        value: newTodo,
+        completed: false
+    };
     return {
         type: ADD_TODO,
-        payload: newTodo
+        payload: newItem
     }
 }
-export { addTodo };
 
-//set complete
-const setComplete = () => {
+export const toggleComplete = (id, completed) => {
     return {
-        type: SET_COMPLETE
+        type: TOGGLE_COMPLETE,
+        id,
+        completed
     }
 }
-export { setComplete }

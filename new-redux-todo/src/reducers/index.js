@@ -1,21 +1,22 @@
 //reducers
-const initialState = {
-    todos: [
-        {value: 'make bed', completed: false}, 
-        {value: 'do laundry', completed: false}
-    ],
-    newTodo: {
-        value: '',
-        completed: false
-    }
-}
+import { ADD_TODO, TOGGLE_COMPLETE } from '../actions/index.js';
 
-const todosReducer = (todos = initialState, action) => {
+const initialTodos = [
+    {value: 'clean room', completed: false},
+    {value: 'make bed', completed: false}
+]
+
+const todosReducer = (todos = initialTodos, action) => {
     switch (action.type) {
-        // case 'GET_TODOS':
-        //     return [...todos, ...action.payload];
-        case 'ADD_TODO':
-            return [...todos, ...action.payload];
+        case ADD_TODO:
+            return [...todos, action.payload];
+        case TOGGLE_COMPLETE:
+            return todos.map((todo, index) => {
+                if(index === action.id) {
+                    todo.completed = action.completed
+                }
+                return todo
+            })
         default:
             return todos;
     }
